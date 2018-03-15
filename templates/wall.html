@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wall</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>CodingDojo Wall</h1>
+            <p> Welcome {{ session['user']['first_name']}}</p>
+            <form action="/" method="POST">
+                <input type="submit" value="Log Off">
+                <!-- clear cookie here -->
+            </form>
+        </div>
+        <form action="/wall" method="POST">
+            <label for="message">Post a message</label>
+            <textarea name="message" cols="30" rows="10"></textarea>
+            <input type="submit" value="Post a message">
+        </form>
+        {% for item in container %}
+        <h3>{{item["first_name"]}} {{item["last_name"]}} {{item["date"]}}</h3>
+        <p>{{item["message"]}}</p>
+        {% endfor %}
+
+        <!-- <h3>{{container["users.first_name"]}}</h3> -->
+    </div>
+</body>
+</html>

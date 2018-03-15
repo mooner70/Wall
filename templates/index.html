@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="wrapper">
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div id="login" method='post'>
+            <h1>LOGIN</h1>
+            <form action="/login" method="post">
+                <label for="email">Email Address</label>
+                <input type="text" name="logemail">
+                <label for="password">Password</label>
+                <input type="password" name="logpw" placeholder="*********">
+                <input type="submit" name="sublog" value="Submit">
+            </form>
+        </div>
+        <div id="registration" method='post'>
+            <h1>REGISTER</h1>
+            <form action="/registration" method="post">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name">
+                <label for="regemail">Email Address</label>
+                <input type="text" name="regemail">
+                <label for="pw">Password</label>
+                <input type="password" name="pw" placeholder="*********">
+                <label for="pwconfirm">Confirm Password</label>
+                <input type="password" name="pwconfirm" placeholder="*********">
+                <input type="submit" name="subreg" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
