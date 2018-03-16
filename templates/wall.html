@@ -19,20 +19,25 @@
             <textarea name="message" cols="30" rows="10"></textarea>
             <input type="submit" name="message" value="Post a message">
         </form>
+        
         {% for item in container %}
+        {% set messageid = item['mainID'] %}
         <h3>{{item["first_name"]}} {{item["last_name"]}} {{item["date"]}}</h3>
         <p> {{item["message"]}}</p>
-        <p> {{item["comment"]}}</p>
         <form action="/comment" method="post">
             <label for="comment">Post a comment</label>
             <textarea name="comment" cols="10" rows="3"></textarea>
-            <input type="hidden" name="hidden" value="{{ item['id'] }}">
+            <input type="hidden" name="hidden" value="{{ item['mainID'] }}">
             <input type="submit" name="comment" value="Post a comment">
         </form>
+        {% for comment in messcont %}
+        {% if comment['message_id'] == messageid %}
+        <h1>{{ comment['comment'] }}</h1>
+        {% endif %}
+        {% endfor %}
         {% endfor %}
 
 
-        <!-- <h3>{{container["users.first_name"]}}</h3> -->
     </div>
 </body>
 </html>

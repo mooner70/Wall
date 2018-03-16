@@ -99,9 +99,11 @@ def valReg():
 @app.route('/wall')
 
 def wall():
-    query = "select *,  date_format(messages.created_at, '%b %d %Y') AS date FROM users left JOIN messages ON users.id = messages.user_id left join comments on messages.id = comments.message_id ORDER BY messages.created_at DESC"
+    query = "select *, messages.id as mainID, date_format(messages.created_at, '%b %d %Y') AS date FROM users JOIN messages ON users.id = messages.user_id left join comments on messages.id = comments.message_id ORDER BY messages.created_at DESC"
     container = mysql.query_db(query)
-    return render_template('wall.html', container=container)
+    query = "select * from comments"
+    messcont = mysql.query_db(query)
+    return render_template('wall.html', container=container, messcont=container)
 
 @app.route('/wall', methods=["POST"])
 def post():
@@ -119,6 +121,7 @@ def post():
 def comment():
     id = session["user"]["id"]
     mID = request.form['hidden']
+    print mID
     query = "INSERT INTO comments (comment, created_at, updated_at, user_id, message_id) VALUES (:comment, NOW(), NOW(), :id, :mID)"
     data = {
         "comment": request.form["comment"],
