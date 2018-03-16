@@ -27,7 +27,7 @@
         <form action="/comment" method="post">
             <label for="comment">Post a comment</label>
             <textarea name="comment" cols="10" rows="3"></textarea>
-            <input type="hidden" name="hidden" value="{{ item['mainID'] }}">
+            <input type="hidden" name="hidden" value="{{ messageid }}">
             <input type="submit" name="comment" value="Post a comment">
         </form>
         {% for comment in messcont %}
