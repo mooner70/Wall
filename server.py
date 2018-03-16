@@ -99,7 +99,7 @@ def valReg():
 @app.route('/wall')
 
 def wall():
-    query = "select users.first_name, messages.id, users.last_name, messages.message, date_format(messages.created_at, '%b %d %Y') AS date FROM users JOIN messages ON users.id = messages.user_id ORDER BY messages.created_at DESC"
+    query = "select *,  date_format(messages.created_at, '%b %d %Y') AS date FROM users left JOIN messages ON users.id = messages.user_id left join comments on messages.id = comments.message_id ORDER BY messages.created_at DESC"
     container = mysql.query_db(query)
     return render_template('wall.html', container=container)
 

@@ -21,8 +21,8 @@
         </form>
         {% for item in container %}
         <h3>{{item["first_name"]}} {{item["last_name"]}} {{item["date"]}}</h3>
-        <p>{{item["message"]}}</p>
-        <p>{{ item['comment'] }}</p>
+        <p> {{item["message"]}}</p>
+        <p> {{item["comment"]}}</p>
         <form action="/comment" method="post">
             <label for="comment">Post a comment</label>
             <textarea name="comment" cols="10" rows="3"></textarea>
