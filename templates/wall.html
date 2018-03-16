@@ -17,12 +17,20 @@
         <form action="/wall" method="POST">
             <label for="message">Post a message</label>
             <textarea name="message" cols="30" rows="10"></textarea>
-            <input type="submit" value="Post a message">
+            <input type="submit" name="message" value="Post a message">
         </form>
         {% for item in container %}
         <h3>{{item["first_name"]}} {{item["last_name"]}} {{item["date"]}}</h3>
         <p>{{item["message"]}}</p>
+        <p>{{ item['comment'] }}</p>
+        <form action="/comment" method="post">
+            <label for="comment">Post a comment</label>
+            <textarea name="comment" cols="10" rows="3"></textarea>
+            <input type="hidden" name="hidden" value="{{ item['id'] }}">
+            <input type="submit" name="comment" value="Post a comment">
+        </form>
         {% endfor %}
+
 
         <!-- <h3>{{container["users.first_name"]}}</h3> -->
     </div>
